@@ -1,6 +1,6 @@
-# Neo-Cartel Frontend
+# Frontend
 
-A modern React/TypeScript e-commerce frontend application built with Vite, React Router, and shadcn/ui components.
+A React/TypeScript e-commerce frontend application built with Vite, React Router, and shadcn/ui components.
 
 ## Features
 
@@ -32,8 +32,8 @@ A modern React/TypeScript e-commerce frontend application built with Vite, React
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/neo-cartel.git
-cd neo-cartel
+git https://github.com/StanleyKioko/savannah-task
+cd Frontend
 
 # Install dependencies
 npm install
@@ -107,7 +107,7 @@ bun run cypress:open
 ## Project Structure
 
 ```
-neo-cartel/
+frontend/
 ├── public/              # Static assets
 ├── src/
 │   ├── components/      # Reusable UI components

@@ -1,4 +1,4 @@
-# SIL E-commerce Backend
+# Backend
 
 A Django-based REST API backend for e-commerce applications with comprehensive order management, customer authentication, and notification systems.
 
