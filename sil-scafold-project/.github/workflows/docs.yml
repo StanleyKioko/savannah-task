@@ -1,0 +1,130 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install MkDocs and dependencies
+        run: |
+          pip install mkdocs mkdocs-material pymdown-extensions
+      
+      - name: Create MkDocs configuration
+        run: |
+          cat > mkdocs.yml << EOF
+          site_name: SIL E-Commerce Project
+          site_description: Documentation for the SIL E-Commerce Project
+          site_author: Your Name
+          repo_url: https://github.com/yourusername/sil-project
+          
+          theme:
+            name: material
+            palette:
+              primary: indigo
+              accent: indigo
+            features:
+              - navigation.tabs
+              - navigation.sections
+              - toc.integrate
+              - search.suggest
+              - search.highlight
+          
+          markdown_extensions:
+            - pymdownx.highlight
+            - pymdownx.superfences
+            - pymdownx.tabbed
+            - pymdownx.tasklist:
+                custom_checkbox: true
+          
+          nav:
+            - Home: 'index.md'
+            - Backend:
+              - Overview: 'backend/overview.md'
+              - API Documentation: 'backend/api.md'
+              - Authentication: 'backend/authentication.md'
+              - Deployment: 'backend/deployment.md'
+            - Frontend:
+              - Overview: 'frontend/overview.md'
+              - Components: 'frontend/components.md'
+              - State Management: 'frontend/state.md'
+            - Development:
+              - Getting Started: 'development/getting-started.md'
+              - Testing: 'development/testing.md'
+              - CI/CD: 'development/ci-cd.md'
+          EOF
+      
+      - name: Create docs directory
+        run: mkdir -p docs
+      
+      - name: Copy README as index
+        run: cp README.md docs/index.md
+      
+      - name: Create docs structure
+        run: |
+          mkdir -p docs/backend docs/frontend docs/development
+          
+          # Backend docs
+          cp sil-backend-scaffold/docs/PROJECT_DOCUMENTATION.md docs/backend/overview.md
+          cp sil-backend-scaffold/docs/REST_API_DOCUMENTATION.md docs/backend/api.md
+          cp sil-backend-scaffold/docs/KEYCLOAK_SETUP.md docs/backend/authentication.md
+          cp sil-backend-scaffold/docs/KUBERNETES_DEPLOYMENT.md docs/backend/deployment.md
+          
+          # Frontend docs
+          cp neo-cartel/README.md docs/frontend/overview.md
+          echo "# Components" > docs/frontend/components.md
+          echo "This page describes the main components of the frontend application." >> docs/frontend/components.md
+          echo "# State Management" > docs/frontend/state.md
+          echo "This page describes the state management approach used in the frontend application." >> docs/frontend/state.md
+          
+          # Development docs
+          echo "# Getting Started" > docs/development/getting-started.md
+          echo "This page provides instructions for setting up the development environment." >> docs/development/getting-started.md
+          echo "# Testing" > docs/development/testing.md
+          echo "This page describes the testing approach and tools used in the project." >> docs/development/testing.md
+          echo "# CI/CD" > docs/development/ci-cd.md
+          echo "This page describes the CI/CD pipeline used for the project." >> docs/development/ci-cd.md
+      
+      - name: Build docs
+        run: mkdocs build
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site
+  
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
