@@ -1,8 +1,6 @@
 # SIL E-Commerce Project
 
-A modern, full-stack e-commerce solution with a Django REST Framework backend and React/TypeScript frontend.
 
-![Project Banner](https://via.placeholder.com/1200x300/3498db/ffffff?text=SIL+E-Commerce+Project)
 
 ## 🚀 Features
 
@@ -74,22 +72,8 @@ This project consists of two main components:
 - **Vitest & Cypress**: Testing
 - **GitHub Actions**: CI/CD
 
-## 📚 Documentation
 
-### Backend Documentation
-
-- [Project Documentation](./sil-backend-scaffold/docs/PROJECT_DOCUMENTATION.md)
-- [API Documentation](./sil-backend-scaffold/docs/REST_API_DOCUMENTATION.md)
-- [Architecture Overview](./sil-backend-scaffold/docs/ARCHITECTURE.md)
-- [Kubernetes Deployment](./sil-backend-scaffold/docs/KUBERNETES_DEPLOYMENT.md)
-- [API Testing Guide](./sil-backend-scaffold/docs/API_TESTING.md)
-- [Keycloak Setup](./sil-backend-scaffold/docs/KEYCLOAK_SETUP.md)
-
-### Frontend Documentation
-
-- [Frontend README](./neo-cartel/README.md)
-
-## 🚦 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -104,7 +88,7 @@ This project consists of two main components:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/sil-project.git
+git clone https://github.com/StanleyKioko/savannah-task
 cd sil-project
 
 # Start all services
@@ -119,26 +103,19 @@ docker-compose exec backend python upload_products.py
 # The frontend will be available at http://localhost:5173/
 ```
 
-### Manual Setup
-
-See the individual README files in the backend and frontend directories for detailed setup instructions:
-
-- [Backend Setup](./sil-backend-scaffold/README.md)
-- [Frontend Setup](./neo-cartel/README.md)
-
 ## 🧪 Testing
 
 ### Backend Tests
 
 ```bash
-cd sil-backend-scaffold
+cd backend
 python -m pytest --cov=store
 ```
 
 ### Frontend Tests
 
 ```bash
-cd neo-cartel
+cd frontend
 npm run test
 npm run test:e2e
 ```
@@ -151,33 +128,9 @@ The project includes Helm charts for Kubernetes deployment:
 
 ```bash
 # Deploy to Kubernetes
-cd sil-backend-scaffold
-helm install sil-backend ./helm --values helm/values.yaml
+cd backend
+helm install backend ./helm --values helm/values.yaml
 
 # For local testing with Minikube
-helm install sil-backend ./helm --values helm/values-minikube.yaml
+helm install backend ./helm --values helm/values-minikube.yaml
 ```
-
-See the [Kubernetes Deployment Guide](./sil-backend-scaffold/docs/KUBERNETES_DEPLOYMENT.md) for detailed instructions.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👏 Acknowledgements
-
-- [Django](https://www.djangoproject.com/)
-- [React](https://reactjs.org/)
-- [Africa's Talking](https://africastalking.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
-- All open source libraries used in this project

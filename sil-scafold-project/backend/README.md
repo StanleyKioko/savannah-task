@@ -71,8 +71,8 @@ The application follows a microservices-ready architecture with:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd sil-backend-scaffold
+git clone https://github.com/StanleyKioko/savannah-task
+cd backend
 ```
 
 2. Copy environment variables:
@@ -259,7 +259,7 @@ send_order_notifications.delay(order_id=123)
 
 1. Build production image:
 ```bash
-docker build -t sil-backend:latest .
+docker build -t backend:latest .
 ```
 
 2. Run with production settings:
@@ -277,7 +277,7 @@ Helm charts are provided for Kubernetes deployment:
 
 1. Install Helm chart:
 ```bash
-helm install sil-backend ./helm/
+helm install backend ./helm/
 ```
 
 2. Configure values:
@@ -680,7 +680,6 @@ Key technologies:
 - **Graphene-Django**: GraphQL implementation
 - **drf-yasg**: Swagger/OpenAPI documentation
 
-For more details, see [Architecture Documentation](docs/ARCHITECTURE.md).
 
 ## <a name="deployment"></a>Deployment
 
@@ -740,17 +739,3 @@ The application includes several performance optimizations:
    - Result caching for common queries
 
 These optimizations ensure the application can handle high loads while maintaining responsive performance.
-
-## <a name="documentation"></a>Documentation
-
-- [Keycloak Setup](docs/KEYCLOAK_SETUP.md) - Guide for setting up OIDC authentication
-- [Architecture](docs/ARCHITECTURE.md) - System architecture overview
-- [REST API Documentation](docs/REST_API_DOCUMENTATION.md) - Detailed REST API usage guide
-- [GraphQL Usage Guide](docs/GRAPHQL_USAGE.md) - Examples for using the GraphQL API
-- [Kubernetes Deployment](docs/KUBERNETES_DEPLOYMENT.md) - Kubernetes deployment instructions
-- [API Testing](docs/API_TESTING.md) - Guide for testing the API endpoints
-- [Improvements Summary](IMPROVEMENTS_SUMMARY.md) - Summary of all improvements made to the project
-
-## <a name="license"></a>License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
